@@ -63,5 +63,31 @@ namespace BackEndChoco.Controllers
             else
                 return new BadRequestObjectResult("Server error");
         }
+
+
+        [HttpGet("getcontacts")]
+        public ICollection<ContactViewModel> GetContacts()
+        {
+            List<ContactViewModel> contacts = new List<ContactViewModel>();
+            foreach (var c in dbcontext.Contacts)
+            {
+                contacts.Add
+                (
+                    new ContactViewModel
+                    {
+                        Name = c.Name,
+                        Company = c.Company,
+                        Office = c.Office,
+                        Email = c.Email,
+                        Image = c.Image,
+                        PhoneNumber = c.PhoneNumber
+                    }
+                );
+            };
+            return contacts;
+        }
+
+
+
     }
 }
